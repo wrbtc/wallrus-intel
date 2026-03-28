@@ -125,9 +125,9 @@ nav {
 }
 
 /* Swap logo for light mode */
-[data-theme="light"] .site-logo { content: url('/logo-light.svg'); }
+[data-theme="light"] .site-logo { content: url('/logo-light.png'); }
 @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) .site-logo { content: url('/logo-light.svg'); }
+    :root:not([data-theme="dark"]) .site-logo { content: url('/logo-light.png'); }
 }
 
 .site-name .dim {
