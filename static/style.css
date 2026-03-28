@@ -1,12 +1,11 @@
 /* wallrus.org — intelligence terminal aesthetic */
 
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+/* Fonts — loaded async to avoid render-blocking */
 
 /* Reset */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Base */
+/* Base — dark mode (default) */
 :root {
     --bg: #0a0a0a;
     --bg-raised: #111111;
@@ -22,6 +21,55 @@
     --mono: 'IBM Plex Mono', 'JetBrains Mono', 'Fira Code', monospace;
     --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --max-w: 680px;
+}
+
+/* Light mode — auto-detect system preference */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+        --bg: #fafafa;
+        --bg-raised: #f0f0f0;
+        --bg-hover: #e8e8e8;
+        --text: #333333;
+        --text-dim: #888888;
+        --text-bright: #111111;
+        --accent: #3a7478;
+        --accent-dim: #5ba3a8;
+        --accent-glow: #3a747815;
+        --border: #e0e0e0;
+        --border-light: #d0d0d0;
+    }
+}
+
+/* Manual override via data-theme attribute */
+[data-theme="light"] {
+    --bg: #fafafa;
+    --bg-raised: #f0f0f0;
+    --bg-hover: #e8e8e8;
+    --text: #333333;
+    --text-dim: #888888;
+    --text-bright: #111111;
+    --accent: #3a7478;
+    --accent-dim: #5ba3a8;
+    --accent-glow: #3a747815;
+    --border: #e0e0e0;
+    --border-light: #d0d0d0;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
 }
 
 html {

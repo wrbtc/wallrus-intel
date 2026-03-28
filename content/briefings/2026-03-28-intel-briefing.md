@@ -1,7 +1,7 @@
 ---
 title: "Wallrus Intel — 2026-03-28"
 date: 2026-03-28
-categories: [bitcoin, geopolitics, ai, poland, macro]
+categories: [bitcoin, geopolitics, ai, europe, macro]
 ---
 
 ## Headlines
@@ -27,10 +27,10 @@ categories: [bitcoin, geopolitics, ai, poland, macro]
 - **Google Gemini 2.5 Pro:** Pricing dropped 40% to compete. Flash model hitting price points that make bulk inference viable.
 - **OpenAI:** Quiet week. Rumored GPT-5 delay. Internal focus on enterprise deals and government contracts.
 
-## Poland & Europe
-- **Szczecin port:** Phase 2 deep-water terminal got environmental clearance. Construction timeline: Q3 2026 start, Q2 2028 operational.
+## Europe
 - **ECB rate path:** Markets now pricing 2 more cuts by year-end. EUR/USD at 1.078.
-- **Polish elections:** PiS polling recovery to 31% — still behind KO coalition at 35%.
+- **German industrial output:** February figures came in flat — manufacturing recession extending into Q2.
+- **UK fiscal review:** Spring statement signals further austerity. GBP/USD steady at 1.292.
 
 ## Global Macro & Markets
 - **US yields:** 10Y at 4.38%. Fed dot plot still shows 2 cuts in 2026 but market confidence is fading.

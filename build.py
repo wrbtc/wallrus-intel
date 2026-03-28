@@ -164,10 +164,9 @@ CAT_SHORT = {
     "crypto": "BTC",
     "geopolitics": "GEO",
     "ai": "AI",
-    "poland": "PL",
+    "europe": "EU",
     "macro": "MACRO",
     "notable": "NOTE",
-    "europe": "EU",
     "oil": "OIL",
     "markets": "MKT",
 }
@@ -199,6 +198,9 @@ def base_html(title: str, body: str, *, is_home: bool = False) -> str:
         <meta name="description" content="{html.escape(SITE_DESCRIPTION)}">
         <link rel="alternate" type="application/rss+xml" title="{html.escape(SITE_TITLE)}" href="{SITE_URL}/feed.xml">
         <link rel="stylesheet" href="/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
     </head>
     <body>
         <header>
@@ -208,6 +210,7 @@ def base_html(title: str, body: str, *, is_home: bool = False) -> str:
                     <a href="/">Latest</a>
                     <a href="/archive.html">Archive</a>
                     <a href="/feed.xml" class="rss-link">RSS</a>
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">dark</button>
                 </div>
             </nav>
         </header>
@@ -217,6 +220,7 @@ def base_html(title: str, body: str, *, is_home: bool = False) -> str:
         <footer>
             <p>Wallrus Intel. AI-curated. Not financial advice.</p>
         </footer>
+        <script src="/theme.js"></script>
     </body>
     </html>""")
 
