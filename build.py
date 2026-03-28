@@ -210,7 +210,7 @@ def base_html(title: str, body: str, *, is_home: bool = False) -> str:
     <body>
         <header>
             <nav>
-                <a href="/" class="site-name"><img src="/logo-dark.png" alt="" class="site-logo" width="28" height="24">WALLRUS<span class="dim">INTEL</span></a>
+                <a href="/" class="site-name"><img src="/logo-dark.png" alt="" class="site-logo" width="36" height="36">WALLRUS<span class="dim">INTEL</span></a>
                 <div class="nav-links">
                     <a href="/">Latest</a>
                     <a href="/archive.html">Archive</a>
