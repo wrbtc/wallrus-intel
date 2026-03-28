@@ -1,0 +1,401 @@
+/* wallrus.org — intelligence terminal aesthetic */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* Reset */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Base */
+:root {
+    --bg: #0a0a0a;
+    --bg-raised: #111111;
+    --bg-hover: #161616;
+    --text: #c8c8c8;
+    --text-dim: #666666;
+    --text-bright: #e8e8e8;
+    --accent: #5ba3a8;
+    --accent-dim: #3a7478;
+    --accent-glow: #5ba3a815;
+    --border: #1e1e1e;
+    --border-light: #2a2a2a;
+    --mono: 'IBM Plex Mono', 'JetBrains Mono', 'Fira Code', monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --max-w: 680px;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.65;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header / Nav */
+header {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+    backdrop-filter: blur(8px);
+}
+
+nav {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-name {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-bright);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+}
+
+.site-name .dim {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.25rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+}
+
+.nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.rss-link::before {
+    content: "◆ ";
+    font-size: 0.6rem;
+    vertical-align: middle;
+}
+
+/* Main */
+main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    width: 100%;
+    flex: 1;
+}
+
+/* Briefing article */
+.briefing-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.briefing-meta time {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+.label-latest {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 0.1rem 0.4rem;
+    letter-spacing: 0.1em;
+}
+
+/* Category tags */
+.cat-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--accent-dim);
+    background: var(--accent-glow);
+    padding: 0.1rem 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+/* Briefing content */
+.briefing h1 {
+    font-family: var(--mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    line-height: 1.3;
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+}
+
+.briefing h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.briefing h1 a:hover {
+    color: var(--accent);
+}
+
+.briefing-content h2 {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.briefing-content h3 {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin: 1.5rem 0 0.5rem;
+}
+
+.briefing-content p {
+    margin-bottom: 0.8rem;
+    color: var(--text);
+}
+
+.briefing-content ul {
+    list-style: none;
+    margin: 0.5rem 0 1rem;
+}
+
+.briefing-content ul li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.briefing-content ul li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent-dim);
+    font-size: 0.8rem;
+}
+
+.briefing-content strong {
+    color: var(--text-bright);
+    font-weight: 600;
+}
+
+.briefing-content a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-dim);
+    transition: border-color 0.15s;
+}
+
+.briefing-content a:hover {
+    border-color: var(--accent);
+}
+
+.briefing-content code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    background: var(--bg-raised);
+    padding: 0.15rem 0.35rem;
+    border: 1px solid var(--border);
+}
+
+.briefing-content pre {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+}
+
+.briefing-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.briefing-content hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+}
+
+/* Previous briefings on index */
+.previous-briefings {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.previous-briefings h2 {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+}
+
+.briefing-summary {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.briefing-summary h3 {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.briefing-summary h3 a {
+    color: var(--text-bright);
+    text-decoration: none;
+}
+
+.briefing-summary h3 a:hover {
+    color: var(--accent);
+}
+
+.headlines-preview {
+    list-style: none;
+    margin: 0.4rem 0 0;
+}
+
+.headlines-preview li {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.2rem;
+}
+
+.headlines-preview li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--border-light);
+}
+
+/* Archive */
+.archive-list h1 {
+    font-family: var(--mono);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 2rem;
+}
+
+.archive-year {
+    font-family: var(--mono);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.archive-entry {
+    padding: 0.4rem 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.archive-entry time {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    min-width: 3.5rem;
+}
+
+.archive-entry a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.archive-entry a:hover {
+    color: var(--accent);
+}
+
+.archive-headlines {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+/* Empty state */
+.empty {
+    font-family: var(--mono);
+    color: var(--text-dim);
+    text-align: center;
+    padding: 4rem 0;
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+footer p {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.03em;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    main {
+        padding: 1.5rem 1rem 3rem;
+    }
+
+    .briefing h1 {
+        font-size: 1.2rem;
+    }
+
+    .briefing-content h2 {
+        font-size: 0.8rem;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
