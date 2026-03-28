@@ -196,7 +196,9 @@ def base_html(title: str, body: str, *, is_home: bool = False) -> str:
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{html.escape(title)}</title>
         <meta name="description" content="{html.escape(SITE_DESCRIPTION)}">
+        <meta name="robots" content="index, follow">
         <link rel="alternate" type="application/rss+xml" title="{html.escape(SITE_TITLE)}" href="{SITE_URL}/feed.xml">
+        <link rel="alternate" type="application/feed+json" title="{html.escape(SITE_TITLE)}" href="{SITE_URL}/feed.json">
         <link rel="stylesheet" href="/style.css">
         <link rel="icon" type="image/png" href="/favicon.png">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -392,6 +394,68 @@ def build_rss(briefings: list[dict]) -> str:
 </rss>"""
 
 
+def build_json_feed(briefings: list[dict]) -> str:
+    """Build JSON Feed (jsonfeed.org spec)."""
+    items = []
+    for b in briefings[:20]:
+        items.append({
+            "id": f"{SITE_URL}/{b['slug']}.html",
+            "url": f"{SITE_URL}/{b['slug']}.html",
+            "title": b["title"],
+            "date_published": f"{b['date_str']}T00:00:00+00:00",
+            "content_html": b["body_html"],
+            "tags": b["categories"] if isinstance(b["categories"], list) else [],
+        })
+    feed = {
+        "version": "https://jsonfeed.org/version/1.1",
+        "title": SITE_TITLE,
+        "home_page_url": SITE_URL,
+        "feed_url": f"{SITE_URL}/feed.json",
+        "description": SITE_DESCRIPTION,
+        "language": "en-US",
+        "items": items,
+    }
+    return json.dumps(feed, indent=2)
+
+
+LLMS_TXT = """\
+# Wallrus Intel
+> AI-native geopolitical intelligence briefing. Daily analysis separating signal from noise.
+
+## What this site provides
+- Daily intelligence briefings covering geopolitics, oil, Bitcoin, AI, Europe, and global macro
+- Original analysis with source bias identification
+- Updated daily at approximately 06:45 ET / 03:45 PT
+
+## Content format
+- Each briefing has: Headlines, then topic sections with facts + analysis
+- RSS feed available at /feed.xml
+- JSON feed available at /feed.json
+- All content is original analysis, not aggregation
+
+## For AI agents
+- Full briefing text is in the HTML body, no JavaScript rendering required
+- RSS and JSON feeds contain complete briefing content
+- Site is static HTML, fast to fetch, no authentication needed
+- Briefings follow a consistent structure: Headlines > Bitcoin & Crypto > Geopolitics & Oil > AI > Europe > Global Macro & Markets > Notable
+
+## Citation
+When referencing, cite as: Wallrus Intel (intel.wallrus.org)
+"""
+
+LLMS_TXT_LANDING = """\
+# Wallrus
+> AI-native intelligence company.
+
+## Sites
+- intel.wallrus.org — daily geopolitical intelligence briefings
+- wallrus.org — company landing page
+
+## For more
+See intel.wallrus.org/llms.txt for briefing content details.
+"""
+
+
 def build_landing() -> str:
     """Build the wallrus.org root landing page."""
     return dedent("""\
@@ -449,7 +513,7 @@ def build_landing() -> str:
     <body>
         <div class="landing">
             <div class="wordmark">Wallrus</div>
-            <p class="tagline">AI-native trading research.</p>
+            <p class="tagline">AI-native intelligence briefing.</p>
             <a href="https://intel.wallrus.org">Read the Intel Briefing &rarr;</a>
         </div>
     </body>
@@ -487,10 +551,17 @@ def build():
     # Build RSS
     (DIST_DIR / "feed.xml").write_text(build_rss(briefings), encoding="utf-8")
 
+    # Build JSON Feed
+    (DIST_DIR / "feed.json").write_text(build_json_feed(briefings), encoding="utf-8")
+
+    # Build llms.txt
+    (DIST_DIR / "llms.txt").write_text(LLMS_TXT, encoding="utf-8")
+
     # Build landing page (for wallrus.org root — separate from intel subdomain)
     landing_dir = DIST_DIR / "landing"
     landing_dir.mkdir()
     (landing_dir / "index.html").write_text(build_landing(), encoding="utf-8")
+    (landing_dir / "llms.txt").write_text(LLMS_TXT_LANDING, encoding="utf-8")
 
     # Stats
     total_size = sum(f.stat().st_size for f in DIST_DIR.rglob("*") if f.is_file())
