@@ -198,6 +198,11 @@ def base_html(title: str, body: str, *, is_home: bool = False) -> str:
         <meta name="description" content="{html.escape(SITE_DESCRIPTION)}">
         <link rel="alternate" type="application/rss+xml" title="{html.escape(SITE_TITLE)}" href="{SITE_URL}/feed.xml">
         <link rel="stylesheet" href="/style.css">
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <meta property="og:image" content="{SITE_URL}/og-image.png">
+        <meta property="og:title" content="{html.escape(title)}">
+        <meta property="og:type" content="website">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
@@ -205,7 +210,7 @@ def base_html(title: str, body: str, *, is_home: bool = False) -> str:
     <body>
         <header>
             <nav>
-                <a href="/" class="site-name">WALLRUS<span class="dim">INTEL</span></a>
+                <a href="/" class="site-name"><img src="/logo-dark.svg" alt="" class="site-logo" width="28" height="24">WALLRUS<span class="dim">INTEL</span></a>
                 <div class="nav-links">
                     <a href="/">Latest</a>
                     <a href="/archive.html">Archive</a>

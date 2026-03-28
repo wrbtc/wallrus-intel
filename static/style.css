@@ -114,6 +114,20 @@ nav {
     color: var(--text-bright);
     text-decoration: none;
     letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.site-logo {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Swap logo for light mode */
+[data-theme="light"] .site-logo { content: url('/logo-light.svg'); }
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .site-logo { content: url('/logo-light.svg'); }
 }
 
 .site-name .dim {
