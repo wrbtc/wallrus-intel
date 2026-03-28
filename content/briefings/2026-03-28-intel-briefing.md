@@ -47,4 +47,3 @@ categories: [bitcoin, geopolitics, ai, europe, macro]
 ## Notable
 - **"No Kings" protests (March 28)** — 9M+ expected across 3,000+ events in all 50 states. Flagship Minneapolis event features Bruce Springsteen. Largest coordinated US political protest ever planned. ([Time](https://time.com/article/2026/03/24/no-kings-protests-march-28-biggest-anti-trump-crowds-ever/))
 - **IOC bars trans women from women's events** starting 2028 LA Olympics.
-- **Burnaby, BC municipal shakeup** — three veteran councillors including longest-serving members announced they won't seek re-election.
